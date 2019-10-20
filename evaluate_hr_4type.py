@@ -75,26 +75,16 @@ def evaluate_model(model, user_feature, item_feature, num_users, num_items, path
     _user_feature = user_feature
     _item_feature = item_feature
     _features = [user_feature, item_feature]
-    ps, ndcgs, ps1, ndcgs1, ps2, ndcgs2 = [], [], [] , [], [], []
-    if(num_thread > 1): # Multi-thread
-        pool = multiprocessing.Pool(processes=num_thread)
-        res = pool.map(eval_one_rating, range(len(_testRatings)))
-        pool.close()
-        pool.join()
-        hits = [r[0] for r in res]
-        ndcgs = [r[1] for r in res]
-        return (hits, ndcgs)
-    # Single thread
-    #eval_one_rating1()
+    hrs, ndcgs, hrs1, ndcgs1, hrs2, ndcgs2 = [], [], [] , [], [], []
     
     for idx in range(len(_testRatings)):
         if idx % 1 == 0:
-            (p, ndcg, p1, ndcg1, p2 ,ndcg2) = eval_one_rating(idx)
-            ps.append(p)
+            (hr, ndcg, hr1, ndcg1, hr2 ,ndcg2) = eval_one_rating(idx)
+            hrs.append(hr)
             ndcgs.append(ndcg)    
-            ps1.append(p1)
+            hrs1.append(hr1)
             ndcgs1.append(ndcg1)    
-            ps2.append(p2)
+            hrs2.append(hr2)
             ndcgs2.append(ndcg2)    
     '''
         
@@ -121,9 +111,6 @@ def eval_one_rating(idx):
     items = _testNegatives[idx]
     u = rating[0]
     gtItems = rating[1:]
-    
-    #items += gtItems
-    #items.append(gtItem)
     
     # Get prediction scores
     map_item_score = {}
@@ -202,17 +189,17 @@ def eval_one_rating(idx):
     # Evaluate top rank list
     
     ranklist = heapq.nlargest(10, map_item_score, key=map_item_score.get)
-    p = getP(ranklist[:3], gtItems,items)
+    hr = getHR(ranklist[:3], gtItems,items)
     ndcg = getNDCG(ranklist[:3], gtItems)
-    p1 = getP(ranklist[:5], gtItems,items)
+    hr1 = getHR(ranklist[:5], gtItems,items)
     ndcg1 = getNDCG(ranklist[:5], gtItems)
-    p2 = getP(ranklist, gtItems,items)   
+    hr2 = getHR(ranklist, gtItems,items)   
     ndcg2 = getNDCG(ranklist[:10], gtItems)
-    return (p, ndcg, p1, ndcg1, p2 ,ndcg2)
+    return (hr, ndcg, hr1, ndcg1, hr2 ,ndcg2)
 
 
 
-def getP(ranklist, gtItems,items):
+def getHR(ranklist, gtItems,items):
     p = 0
     for item in ranklist:
         if item in gtItems:
@@ -227,11 +214,6 @@ def getR(ranklist, gtItems):
             r += 1
     return r * 1.0 / len(gtItems)
 
-def getHitRatio(ranklist, gtItem):
-    for item in ranklist:
-        if item == gtItem:
-            return 1
-    return 0
 
 def getDCG(ranklist, gtItems):
     dcg = 0.0
@@ -256,11 +238,3 @@ def getNDCG(ranklist, gtItems):
     if idcg == 0:
         return 0
     return dcg / idcg
-
-
-#def getNDCG(ranklist, gtItems):
-#    for i in xrange(len(ranklist)):
-#        item = ranklist[i]
-#        if item == gtItems:
-#            return math.log(2) / math.log(i+2)
-#    return 0
