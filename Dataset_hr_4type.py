@@ -26,11 +26,6 @@ class Dataset(object):
         self.path_uull, self.uull_path_num, self.uull_jump = self.load_path_as_map(path + 'fm_train_uull_limit10_bpr2500_knn_hr_3sim_3_top5.txt')
         '''
         
-        self.path_ulul, self.ulul_path_num, self.ulul_jump,self.ulul_p = self.load_path_as_map1(path + 'ulul_final_only_positive_addtest.txt')
-        self.path_ulll, self.ulll_path_num, self.ulll_jump,self.ulll_p = self.load_path_as_map1(path + 'ulll_final_only_positive_addtest.txt')
-        self.path_uuul, self.uuul_path_num, self.uuul_jump,self.uuul_p = self.load_path_as_map1(path + 'uuul_final_only_positive_addtest.txt')
-       
-        
         self.path_ulul, self.ulul_path_num, self.ulul_jump = self.load_path_as_map(path + 'ulul_final_max.txt')
         self.path_ulll, self.ulll_path_num, self.ulll_jump = self.load_path_as_map(path + 'ulll_final_max.txt')
         self.path_uuul, self.uuul_path_num, self.uuul_jump = self.load_path_as_map(path + 'uuul_final_max.txt')
