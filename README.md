@@ -15,6 +15,7 @@ Runtimes|HR@3  | NDCG@3| HR@5|NDCG@5|HR@10 |NDCG@10
 3|0.8631|0.7741|0.9186|0.7963|0.9667|0.8126
 4|0.8605|0.7578|0.9149|0.7795|0.9508|0.7924
 5|0.8589|0.7647|0.9091|0.7859|0.9503|0.7993
+As we can see, the all of the results meet up with the performance in our paper.
 
 # Requirements
 
