@@ -254,6 +254,6 @@ class Dataset(object):
 	
 
 if __name__ == '__main__':
-    dataset = Dataset('tmp/')
+    dataset = Dataset('data/')
     
 
