@@ -92,17 +92,15 @@ def evaluate_model(model, user_feature, item_feature, num_users, num_items, path
         print('wrong predication')
         for idx in range(len(_testRatings)):
             if idx < 10:
-                (p, r, ndcg) = eval_one_rating1(idx)
-               
-    
-    ps1 = np.array(ps).mean()
-    if ps1 > 0.3:
+                (hr, r, ndcg) = eval_one_rating1(idx)
+    hrs1 = np.array(hrs).mean()
+    if hrs1 > 0.3:
         print('wrong prediction:')
         for idx in range(len(_testRatings)):
-             p = eval_one_rating1(idx)
+             hr = eval_one_rating1(idx)
         return 0
     '''    
-    return (ps, ndcgs, ps1, ndcgs1, ps2, ndcgs2)
+    return (hrs, ndcgs, hrs1, ndcgs1, hrs2, ndcgs2)
 
 
 
@@ -123,9 +121,7 @@ def eval_one_rating(idx):
     uuul_input = np.zeros((len(items), _path_nums[2], _jumps[2], _length)) 
     uull_input = np.zeros((len(items), _path_nums[3], _jumps[3], _length)) 
     k = 0
- 
     for i in items:
-       
         user_input.append(u)
         item_input.append(i)
         user_fe[k] = _user_feature[u]
@@ -166,28 +162,18 @@ def eval_one_rating(idx):
                     type_id = _path_uull[(u, i)][p_i][p_j][0]
                     index = _path_uull[(u, i)][p_i][p_j][1]
                     if type_id == 1:
-                        uuul_input[k][p_i][p_j] = _user_feature[index]
+                        uull_input[k][p_i][p_j] = _user_feature[index]
                     elif type_id == 2:
-                        uuul_input[k][p_i][p_j] = _item_feature[index]
+                        uull_input[k][p_i][p_j] = _item_feature[index]
         k += 1
 
     
     predictions = _model.predict([np.array(user_input), np.array(item_input), ulul_input, ulll_input, uuul_input, uull_input], 
                                  batch_size = 256, verbose = 0)
     
-    
     for i in range(len(items)):
         item = items[i]
         map_item_score[item] = predictions[i] 
-    '''
-    ii = 0
-    for i in items:
-        map_item_score[i] = predictions[ii]
-        ii += 1
-    '''
-    #items.pop()
-    # Evaluate top rank list
-    
     ranklist = heapq.nlargest(10, map_item_score, key=map_item_score.get)
     hr = getHR(ranklist[:3], gtItems,items)
     ndcg = getNDCG(ranklist[:3], gtItems)
