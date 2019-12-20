@@ -19,17 +19,17 @@ HP-MA-mix|0.2948|0.2288|0.3637|0.2573|0.4454|0.2810
 
 1. HP-MA perfomance:
 
-It outperforms all the other methods in most cases, which are run five times respectively and obtained by average of the results.
+ It outperforms all the other methods in most cases, which are run five times respectively and obtained by average of the results.
 
-MCRec: Binbin Hu, Chuan Shi, Wayne Xin Zhao, Philip S. Yu:
+ MCRec: Binbin Hu, Chuan Shi, Wayne Xin Zhao, Philip S. Yu:
 Leveraging Meta-path based Context for Top- N Recommendation with A Neural Co-Attention Model. KDD 2018: 1531-1540 (code: https://github.com/librahu/MCRec)
 
-NeuACF: Xiaotian Han, Chuan Shi, Senzhang Wang, Philip S. Yu, Li Song:
+ NeuACF: Xiaotian Han, Chuan Shi, Senzhang Wang, Philip S. Yu, Li Song:
 Aspect-Level Deep Collaborative Filtering via Heterogeneous Information Networks. IJCAI 2018: 3393-3399 (code: https://github.com/ahxt/NeuACF)
 
 2. HP-MA-mix performance:
 
-It is an enhanced version of our model, HP-MA. Unlike HP-MA which only use 3-hop paths, HP-MA-mix leverages 2-hop, 3-hop and 4-hop paths together to improve the recommendation performance. As we can see, it performs slightly better than the original version of HP-MA.
+ It is an enhanced version of our model, HP-MA. Unlike HP-MA which only use 3-hop paths, HP-MA-mix leverages 2-hop, 3-hop and 4-hop paths together to improve the recommendation performance. As we can see, it performs slightly better than the original version of HP-MA.
 
 # Requirements
 
