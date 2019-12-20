@@ -19,7 +19,7 @@ HP-MA-mix|0.2948|0.2288|0.3637|0.2573|0.4454|0.2810
 
 1) HP-MA outperforms all the other methods in most cases, which are run five times respectively and obtained by average of the results.
 
-MCRec: Binbin Hu, Chuan Shi, Wayne Xin Zhao, Philip S. Yu:
+) MCRec: Binbin Hu, Chuan Shi, Wayne Xin Zhao, Philip S. Yu:
 Leveraging Meta-path based Context for Top- N Recommendation with A Neural Co-Attention Model. KDD 2018: 1531-1540 (code: https://github.com/librahu/MCRec)
 
 NeuACF: Xiaotian Han, Chuan Shi, Senzhang Wang, Philip S. Yu, Li Song:
