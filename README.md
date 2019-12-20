@@ -16,7 +16,7 @@ MCRec|0.2685|0.1998|0.3446|0.2313|0.4317|0.2597
 NeuACF|0.2412|0.1863|0.3379|0.2259|0.4767|0.2705
 HP-MA|0.2801|0.2240|0.3614|0.2539|0.4341|0.2762
 
-As we can see, the all of the results meet up with the performance in our paper.
+As we can see, HP-MA outperforms all the other methods in most cases.
 
 # Requirements
 
